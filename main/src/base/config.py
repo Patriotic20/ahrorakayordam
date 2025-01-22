@@ -26,9 +26,8 @@ class Settings(BaseSettings):
             f'{self.DB_HOST}:{self.DB_PORT}/'
             f'{self.DB_NAME}'
         )
-        
-    def connection_string(self):
-        return (
+
+
     model_config = ConfigDict(env_file=".env")
 
 settings = Settings()
