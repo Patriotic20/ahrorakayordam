@@ -1,5 +1,4 @@
-from sqlalchemy import Column , Integer , String , Text, ForeignKey 
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column , Integer , String , Text
 from src.base.db import Base
 
 class Question(Base):
@@ -8,5 +7,9 @@ class Question(Base):
     id = Column(Integer , primary_key=True , nullable=False)
     text = Column(Text , nullable=False)
     imgae = Column(String , nullable=True)
+    A = Column(String , nullable=False)
+    B = Column(String , nullable=False)
+    C = Column(String , nullable=False)
+    D = Column(String , nullable=False)
+
     
-    answers = relationship("Answer", back_populates="question", cascade="all, delete")
