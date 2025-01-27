@@ -1,5 +1,4 @@
 from sqlalchemy import Column, Integer, String, JSON
-from src.api.question_bank.random_choose import get_test
 
 from src.base.db import Base
 
