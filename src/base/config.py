@@ -11,11 +11,11 @@ class Settings(BaseSettings):
     DB_PASSWORD: str 
     DB_PORT: str 
     DB_NAME: str 
-    MODE: str
+    # MODE: str
 
-    SECRET_KEY: str 
-    ACCESS_TOKEN_EXPIRE_MINUTES: int 
-    ALGORITHM: str 
+    # SECRET_KEY: str
+    # ACCESS_TOKEN_EXPIRE_MINUTES: int
+    # ALGORITHM: str
 
     @property
     def connection_string(self):
