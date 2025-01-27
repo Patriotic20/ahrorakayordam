@@ -1,8 +1,8 @@
-"""added user and question model
+"""Alimbic problem fix
 
-Revision ID: 8ec9517d3a68
+Revision ID: 19ceb5ef5e7b
 Revises: 
-Create Date: 2025-01-27 16:07:04.533023
+Create Date: 2025-01-27 17:19:47.541867
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '8ec9517d3a68'
+revision: str = '19ceb5ef5e7b'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -28,6 +28,7 @@ def upgrade() -> None:
     sa.Column('B', sa.String(), nullable=False),
     sa.Column('C', sa.String(), nullable=False),
     sa.Column('D', sa.String(), nullable=False),
+    sa.Column('is_correct', sa.String(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('users',
