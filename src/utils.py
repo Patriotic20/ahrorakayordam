@@ -2,8 +2,8 @@ import typing
 import bcrypt
 from jose import jwt, JWTError
 
-from .base.config import settings
-from .exceptions import UserNotFound
+from src.base.config import settings
+from src.exceptions import UserNotFound
 
 
 def create_access_token(data: typing.Dict):
