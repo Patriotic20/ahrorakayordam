@@ -11,5 +11,5 @@ class Question(Base):
     B = Column(String , nullable=False)
     C = Column(String , nullable=False)
     D = Column(String , nullable=False)
-    is_correct = Column(String)
+    is_correct = Column(String , nullable=True)
     
