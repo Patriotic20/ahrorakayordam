@@ -34,6 +34,14 @@ def login_user(login_form: OAuth2PasswordRequestForm = Depends(), db: Session = 
     if not verify_password(login_form.password, user.password):
         raise CredentialsException
 
+<<<<<<< HEAD
     access_token = create_access_token(data=dict(username=user.username , user_id = user.id), expires_delta = timedelta(minutes=15))
-
+=======
+    access_token = create_access_token(data={"username":user.username, "exp":datetime.utcnow() + timedelta(minutes=15)})
     return {'access_token':access_token}
+>>>>>>> 7967ad9 (acces token)
+
+
+@users_router.delete("/")
+def delete_user():
+    ...

@@ -20,3 +20,7 @@ def add_student(username: str, password: str, test: Optional[Dict[str, Any]] = N
 
     return StudentCreateResponse.from_orm(new_student)
 
+
+
+def test_response():
+    ...
