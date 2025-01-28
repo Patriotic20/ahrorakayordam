@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from src.base.db import get_db
 from pathlib import Path
 from src.models.question import Question
+from src.utils import  get_user_from_token
 
 router = APIRouter()
 
@@ -10,8 +11,9 @@ router = APIRouter()
 def results(
     question : str,
     answer: str | None = None,
+    user_id : int = Depends(get_user_from_token),
     db : Session = Depends(get_db)):
-
+    
     user_test = db.query(Question).filter(Question.text == question).first()
     
     if user_test:
