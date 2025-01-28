@@ -12,6 +12,7 @@ student_router = APIRouter(prefix='/students', tags=['Students'])
 
 @student_router.post("/add", response_model=StudentCreateResponse)
 def add_student(username: str, password: str, test: Optional[Dict[str, Any]] = None, db: Session = Depends(get_db)):
+    
     new_student = Student(username=username, password=password, test=test)
     db.add(new_student)
     db.commit()

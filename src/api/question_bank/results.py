@@ -3,22 +3,27 @@ from sqlalchemy.orm import Session
 from src.base.db import get_db
 from pathlib import Path
 from src.models.question import Question
+from src.models.students import Student
+from typing import List
 from src.utils import  get_user_from_token
 
 router = APIRouter()
 
 @router.get("/")
-def results(
-    question : str,
-    answer: str | None = None,
-    user_id : int = Depends(get_user_from_token),
-    db : Session = Depends(get_db)):
+def check_test(
+    answers : List ,
+    user_id : int = Depends(get_user_from_token) ,
+    db: Session = Depends(get_db)):
     
-    user_test = db.query(Question).filter(Question.text == question).first()
+    correct_count = 0
+    incorrect_count = 0
+    details = []
     
-    if user_test:
-        if user_test.A == answer:
-            return 1
-    else:
-        return 0
+    for answer in answers:
+        queston_text = answer.keys()
+        question = next(iter(queston_text))
+        question_from_db = db.query(Question).filter(Question.text == question)
+        
+         
+    
     
