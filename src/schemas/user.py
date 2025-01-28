@@ -7,11 +7,11 @@ class UserData(BaseModel):
     password: str
     role: str
 
-    # @field_validator("password")
-    # def hash_password(cls, value):
-    #     salt = bcrypt.gensalt()
-    #     hashed_password = bcrypt.hashpw(value.encode('utf-8'), salt)
-    #     return hashed_password.decode('utf-8')
+    @field_validator("password")
+    def hash_password(cls, value):
+        salt = bcrypt.gensalt()
+        hashed_password = bcrypt.hashpw(value.encode('utf-8'), salt)
+        return hashed_password.decode('utf-8')
 
 
 class UserCreateRequest(UserData):
