@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, JSON
+from sqlalchemy import Column, Integer, String, JSON 
 
 from src.base.db import Base
 
@@ -10,3 +10,5 @@ class Student(Base):
     username = Column(String, nullable=True)
     password = Column(String, nullable=True)
     test = Column(JSON)
+    correct_answers = Column(Integer , nullable=True)
+    incorrect_answers = Column(Integer , nullable=True)

@@ -9,11 +9,10 @@ router = APIRouter()
 @router.post("/upload")
 def upload_excel(file: UploadFile, db: Session = Depends(get_db)):
     try:
-        # Read the Excel file into a pandas DataFrame
-        df = pd.read_excel(file.file)
-        df.columns = df.columns.str.strip()  # Normalize column names (remove extra spaces)
 
-        # Ensure the required columns are present
+        df = pd.read_excel(file.file)
+        df.columns = df.columns.str.strip()  
+        
         required_columns = {"Question", "A", "B", "C", "D"}
         if not required_columns.issubset(df.columns):
             raise HTTPException(
@@ -42,11 +41,11 @@ def upload_excel(file: UploadFile, db: Session = Depends(get_db)):
                 "option_d": row["D"],
             })
 
-        db.commit()  # Commit the transaction to save data in the database
+        db.commit()  
         return uploaded_questions
 
     except Exception as e:
-        db.rollback()  # Rollback in case of any error
+        db.rollback()  
         raise HTTPException(status_code=400, detail=f"Error processing file: {str(e)}")
 
 
