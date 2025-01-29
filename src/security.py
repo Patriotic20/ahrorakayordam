@@ -8,10 +8,9 @@ from sqlalchemy import select
 
 from src.base.db import get_db
 from src.exceptions import CredentialsException, InvalidRoleException
-from .models import Admin, Teacher, Student
-# from .models.user import User
+from src.models.user import User
 
-from  .utils import verify_token
+from src.utils import verify_token
 
 security_schema = OAuth2PasswordBearer(tokenUrl='/user/login')
 
@@ -23,7 +22,7 @@ def get_current_user(token: str = Depends(security_schema), db: Session = Depend
     if username is None:
         raise CredentialsException
 
-    result = db.execute((select(Admin).filter(Admin.username == username)) or (select(Teacher).filter(Teacher.username==username)) or (select(Student).filter(Student.username==username)))
+    result = db.execute(select(User).filter(User.username == username))
     user = result.scalars().first()
 
     if user is None:
@@ -49,7 +48,7 @@ def has_access(roles: typing.List[str]):
     return decorator
 
 
-def get_admin_user(user: Admin = Depends(get_current_user)):
+def get_admin_user(user: User = Depends(get_current_user)):
     if user.username != 'admin':
         raise CredentialsException
     return user
