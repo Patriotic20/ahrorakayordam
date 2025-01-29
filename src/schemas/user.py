@@ -14,12 +14,38 @@ class UserData(BaseModel):
         return hashed_password.decode('utf-8')
 
 
+
 class UserCreateRequest(UserData):
     class Config:
         form_attributes = True
 
 
 class UserCreateResponse(UserData):
+    id: int
+
+    class Config:
+        from_attributes = True
+
+
+
+class TeacherCreateRequest(UserData):
+    class Config:
+        form_attributes = True
+
+
+class TeacherCreateResponse(UserData):
+    id: int
+
+    class Config:
+        from_attributes = True
+
+
+class StudentCreateRequest(UserData):
+    class Config:
+        form_attributes = True
+
+
+class StudentCreateResponse(UserData):
     id: int
 
     class Config:

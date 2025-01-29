@@ -179,3 +179,11 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+
+
+
+
+# O'zim qo'shgan git ignorlarim
+.vscode
+.idea
