@@ -1,16 +1,11 @@
 import typing
 import bcrypt
 from jose import jwt, JWTError
-<<<<<<< HEAD
-from fastapi import HTTPException, status 
+from fastapi import HTTPException, status
+from datetime import timedelta , datetime
+
 from .base.config import settings
 from .exceptions import UserNotFound
-from datetime import timedelta , datetime
-=======
-
-from src.base.config import settings
-from src.exceptions import UserNotFound
->>>>>>> 7967ad9 (acces token)
 
 
 def create_access_token(data: typing.Dict ,  expires_delta: timedelta = timedelta(minutes=15)):

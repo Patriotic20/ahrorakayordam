@@ -26,3 +26,11 @@ class InvalidRoleException(HTTPException):
             detail="Invalid Role",
             headers={"WWW-Authenticate": "Bearer"}
         )
+
+class NotationRoleException(HTTPException):
+    def __init__(self):
+        super().__init__(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Siz kiritgan rol notogri",
+            headers={"WWW-Authenticate": "Bearer"}
+        )

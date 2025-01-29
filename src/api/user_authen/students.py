@@ -7,6 +7,7 @@ from src.base.db import get_db
 from src.models import Student
 from src.schemas.students import StudentCreateResponse
 
+
 student_router = APIRouter(prefix='/students', tags=['Students'])
 
 
@@ -22,5 +23,8 @@ def add_student(username: str, password: str, test: Optional[Dict[str, Any]] = N
 
 
 
-def test_response():
+@student_router.post("/add_variant")
+def test_response(password: str, db: Session = Depends(get_db)):
+    test = db.execute(password==password)
+
     ...
