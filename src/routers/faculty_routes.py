@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from src.db import get_db
+from src.base.db import get_db
 from src.crud.faculty_crud import get_faculty, get_faculties, create_faculty, update_faculty, delete_faculty
 from src.schemas.faculty_schema import FacultyCreate, FacultyUpdate
 
