@@ -1,11 +1,7 @@
-
 from fastapi import FastAPI
-from src.api import router as main_api
-import uvicorn
+from src.routers import faculty_routes, department_routes
 
-fastapi_app = FastAPI()
+app = FastAPI()
 
-fastapi_app.include_router(main_api)
-
-if __name__ == "__main__":
-    uvicorn.run("app:fastapi_app", reload=True, host="0.0.0.0")
+app.include_router(faculty_routes.router, prefix="/api", tags=["Faculties"])
+app.include_router(department_routes.router, prefix="/api", tags=["Departments"])
