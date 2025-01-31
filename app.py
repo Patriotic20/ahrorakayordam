@@ -1,4 +1,3 @@
-
 from fastapi import FastAPI
 from src.api import router as main_api
 import uvicorn
