@@ -1,10 +1,11 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from src.db import get_db
+
+from src.base.db import get_db
 from src.crud.department_crud import get_department, get_departments, create_department, update_department, delete_department
 from src.schemas.department_schema import DepartmentCreate, DepartmentUpdate
 
-router = APIRouter()
+router = APIRouter(prefix="/api", tags=["Departments"])
 
 @router.get("/departments/{department_id}")
 def read_department(department_id: int, db: Session = Depends(get_db)):

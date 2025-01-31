@@ -1,10 +1,11 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from src.db import get_db
+
+from src.base.db import get_db
 from src.crud.faculty_crud import get_faculty, get_faculties, create_faculty, update_faculty, delete_faculty
 from src.schemas.faculty_schema import FacultyCreate, FacultyUpdate
 
-router = APIRouter()
+router = APIRouter(prefix="/api", tags=["Faculties"])
 
 @router.get("/faculties/{faculty_id}")
 def read_faculty(faculty_id: int, db: Session = Depends(get_db)):

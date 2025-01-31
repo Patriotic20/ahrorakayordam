@@ -6,7 +6,7 @@ from sqlalchemy import pool
 from alembic import context
 from src.base.config import settings
 from src.base.db import Base
-from src.models import Student
+from src.models import *
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -23,6 +23,7 @@ config.set_main_option("sqlalchemy.url" , settings.connection_string)
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
+
 target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
