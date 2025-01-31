@@ -2,8 +2,8 @@ from datetime import timedelta, datetime
 
 from fastapi import APIRouter, Depends
 from fastapi.security import OAuth2PasswordRequestForm
-from sqlalchemy.future import select
-from sqlalchemy.orm import Session 
+from sqlalchemy import select
+from sqlalchemy.orm import Session
 
 from src.base.db import get_db
 from src.exceptions import UserNotFound, CredentialsException
@@ -25,7 +25,7 @@ def register_user(user_create_data: UserCreateRequest, db: Session = Depends(get
 
 @users_router.post("/login")
 def login_user(login_form: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
-    result = db.execute(select(User).where(User.username == login_form.username))
+    result = db.execute(select(User).where(login_form.username == User.username))
     user = result.scalar_one_or_none()
 
     if not user:
@@ -34,6 +34,6 @@ def login_user(login_form: OAuth2PasswordRequestForm = Depends(), db: Session = 
     if not verify_password(login_form.password, user.password):
         raise CredentialsException
 
-    access_token = create_access_token(data=dict(username=user.username , user_id = user.id), expires_delta = timedelta(minutes=15))
+    access_token = create_access_token(data=dict(username=user.username), exp=datetime.utcnow() + timedelta(minutes=15))
 
-    return {'access_token':access_token}
+    return {'access_token': access_token}

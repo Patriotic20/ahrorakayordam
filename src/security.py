@@ -6,11 +6,11 @@ from fastapi import Depends
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy import select
 
-from base.db import get_db
-from  exceptions import CredentialsException, InvalidRoleException
-from models.user import User
+from src.base.db import get_db
+from src.exceptions import CredentialsException, InvalidRoleException
+from src.models.user import User
 
-from  utils import verify_token
+from src.utils import verify_token
 
 security_schema = OAuth2PasswordBearer(tokenUrl='/user/login')
 

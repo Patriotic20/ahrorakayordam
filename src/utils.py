@@ -1,10 +1,11 @@
 import typing
 import bcrypt
 from jose import jwt, JWTError
-from fastapi import HTTPException, status 
+from fastapi import HTTPException, status
+from datetime import timedelta , datetime
+
 from .base.config import settings
 from .exceptions import UserNotFound
-from datetime import timedelta , datetime
 
 
 def create_access_token(data: typing.Dict ,  expires_delta: timedelta = timedelta(minutes=15)):
