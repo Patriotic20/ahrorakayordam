@@ -2,9 +2,9 @@ from typing import Optional, Any, Dict
 from pydantic import BaseModel
 
 class StudentData(BaseModel):
-    username: str
-    password: str
-    test: Optional[Dict[str, Any]] = None
+    user_id : int
+    last_name: str
+    first_name: str
 
 class StudentCreateRequest(StudentData):
     class Config:
