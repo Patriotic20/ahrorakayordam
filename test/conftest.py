@@ -1,4 +1,3 @@
-
 import pytest
 from src.base.config import settings
 from src.base.db import Base, engine, SessionLocal
